@@ -3,35 +3,38 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cv_wrapper"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardElevation="4dp"
     android:foreground="?android:attr/selectableItemBackground"
-    >
+    app:cardElevation="4dp"
+    app:cardCornerRadius="4dp">
 
-    <LinearLayout
+    <RelativeLayout
+        android:minHeight="@dimen/card_min_height"
         android:layout_width="match_parent"
-        android:padding="8dp"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <TextView
-            android:layout_gravity="center_horizontal"
             android:id="@+id/tv_title"
             style="@style/Base.TextAppearance.AppCompat.Title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
             android:text="Temp title" />
 
-        <TextView
+        <!--<TextView
+            android:layout_below="@id/tv_title"
             android:id="@+id/tv_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Temp desc for a default card.." />
+            android:text="Temp desc for a default card.." />-->
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>
 
