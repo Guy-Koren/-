@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">הנוסחא</string>
     <string name="action_settings">הגדרות</string>
+    <string name="credits">מאת תומר רוזנפלד </string>
+    <string name="error1">שגיאה אנא פתחו מחדש את האפליקציה</string>
 </resources>

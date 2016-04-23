@@ -8,4 +8,5 @@ import java.util.ArrayList;
 public class RES {
     public static ArrayList<Section> sections;
     public static int selected_section;
+    public static java.lang.String url;
 }

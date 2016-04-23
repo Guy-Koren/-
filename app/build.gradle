@@ -6,10 +6,11 @@ android {
 
     defaultConfig {
         applicationId "co.il.guykoren"
+        versionCode 4
+        versionName "1.0"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 3
-        versionName "1.0"
+
     }
     buildTypes {
         release {

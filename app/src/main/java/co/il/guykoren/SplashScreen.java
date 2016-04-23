@@ -28,9 +28,11 @@ public class SplashScreen extends Activity implements Logger {
             Parse.initialize(new Parse.Configuration.Builder(this).applicationId(Secret.APP_ID).clientKey(Secret.CLIENT_KEY).server(Secret.SERVER).build());
             log("Parse initialized successfully");
         } catch (IllegalStateException ignored) {
-            log("Parse initialization failed.");
-            Toast.makeText(getApplicationContext(), "Error, please reopen the app", Toast.LENGTH_LONG).show();
-            finish();
+            if (!RES.sections.isEmpty()) {
+                log("Parse initialization failed.");
+                Toast.makeText(getApplicationContext(), getString(R.string.error1), Toast.LENGTH_LONG).show();
+                finish();
+            }
         }
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Sections");
         query.whereExists("title");
@@ -55,7 +57,7 @@ public class SplashScreen extends Activity implements Logger {
                     log(response.toString());
                 }
                 for (ParseObject object : response) {
-                    RES.sections.add(new Section(object.getString("title"), object.getString("desc"), object.getObjectId(), object.getList("files_name"),object.getList("files_url")));
+                    RES.sections.add(new Section(object.getString("title"), object.getString("desc"), object.getObjectId(), object.getList("files_name"), object.getList("files_url")));
                 }
 
                 log("Successfully retrieved data");
