@@ -11,7 +11,9 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SplashScreen extends Activity implements Logger {
@@ -23,7 +25,7 @@ public class SplashScreen extends Activity implements Logger {
         log("Layout loaded successfully");
         RES.sections = new ArrayList<>();
         try {
-            Parse.initialize(new Parse.Configuration.Builder(this).applicationId("1vafoDEuQ14AEIq0hI8K6qY1RXpNjLJ7lLJ6Jl8f").clientKey("Tz5ZskpXW4A777iSI9B8VTQPVPDXKTHihNP644qK").server("https://parseapi.back4app.com").build());
+            Parse.initialize(new Parse.Configuration.Builder(this).applicationId(Secret.APP_ID).clientKey(Secret.CLIENT_KEY).server(Secret.SERVER).build());
             log("Parse initialized successfully");
         } catch (IllegalStateException ignored) {
             log("Parse initialization failed.");
@@ -53,7 +55,7 @@ public class SplashScreen extends Activity implements Logger {
                     log(response.toString());
                 }
                 for (ParseObject object : response) {
-                    RES.sections.add(new Section(object.getString("title"), object.getString("desc"), object.getObjectId(), object.<String>getList("files")));
+                    RES.sections.add(new Section(object.getString("title"), object.getString("desc"), object.getObjectId(), object.getList("files_name"),object.getList("files_url")));
                 }
 
                 log("Successfully retrieved data");

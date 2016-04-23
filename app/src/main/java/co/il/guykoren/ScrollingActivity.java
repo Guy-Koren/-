@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.File;
+
 public class ScrollingActivity extends AppCompatActivity {
 
     @Override
@@ -31,16 +33,18 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
 
-        for (String fileName : RES.sections.get(RES.selected_section).files) {
-            Log.d("FILE ", fileName);
+        for (final Section.File file : RES.sections.get(RES.selected_section).files) {
+            Log.d("FILE ", file.getName());
             LayoutInflater inflater =
                     (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View inflated = inflater.inflate(R.layout.list_item, null);
-            ((TextView) inflated.findViewById(R.id.tvTitle)).setText(fileName);
+            ((TextView) inflated.findViewById(R.id.tvTitle)).setText(file.getName());
             inflated.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(getApplicationContext(),ContentView.class));
+                    Intent intent = new Intent(getApplicationContext(),ContentView.class);
+                    intent.putExtra("url",file.getUrl());
+                    startActivity(intent);
                 }
             });
             ((LinearLayout) findViewById(R.id.listWrapper)).addView(inflated);

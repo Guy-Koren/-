@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="locked"
             android:name=".SplashScreen"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen"></activity>
         <activity
