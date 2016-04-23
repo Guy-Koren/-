@@ -41,3 +41,5 @@ proguard/
 # Android Studio captures folder
 captures/
 >>>>>>> ea9e54ca595ddfc83c83d55b7f9fc351ceb5402e
+.idea
+app/src/main/java/co/il/guykoren/Secret.java
