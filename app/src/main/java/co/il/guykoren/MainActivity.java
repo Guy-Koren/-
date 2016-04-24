@@ -33,8 +33,14 @@ public class MainActivity extends AppCompatActivity implements Logger {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         log("On create started");
-        if (firstInstance)
+      /*  if (firstInstance) {
             startActivity(new Intent(getApplicationContext(), SplashScreen.class));
+            firstInstance = false;
+        }*/
+        if (RES.sections != null) {
+            gv_sections.setAdapter(new SectionsAdapter(getApplicationContext(), RES.sections));
+            onRealCreate();
+        }
     }
 
     void defaultGoogleShtick() {
@@ -75,11 +81,6 @@ public class MainActivity extends AppCompatActivity implements Logger {
     @Override
     protected void onResume() {
         super.onResume();
-        if (RES.sections != null && firstInstance) {
-            firstInstance = false;
-            gv_sections.setAdapter(new SectionsAdapter(getApplicationContext(), RES.sections));
-            onRealCreate();
-        }
     }
 
     private void onRealCreate() {

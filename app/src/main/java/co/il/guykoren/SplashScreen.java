@@ -1,6 +1,7 @@
 package co.il.guykoren;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -28,7 +29,7 @@ public class SplashScreen extends Activity implements Logger {
             Parse.initialize(new Parse.Configuration.Builder(this).applicationId(Secret.APP_ID).clientKey(Secret.CLIENT_KEY).server(Secret.SERVER).build());
             log("Parse initialized successfully");
         } catch (IllegalStateException ignored) {
-            if (!RES.sections.isEmpty()) {
+            if (RES.sections.isEmpty()) {
                 log("Parse initialization failed.");
                 Toast.makeText(getApplicationContext(), getString(R.string.error1), Toast.LENGTH_LONG).show();
                 finish();
@@ -62,6 +63,7 @@ public class SplashScreen extends Activity implements Logger {
 
                 log("Successfully retrieved data");
                 log("Finishing activity");
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 finish();
                 log("Activity finished");
 

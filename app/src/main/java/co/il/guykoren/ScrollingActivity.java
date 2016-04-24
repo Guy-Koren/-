@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,7 +20,7 @@ import android.widget.TextView;
 import java.io.File;
 
 public class ScrollingActivity extends AppCompatActivity {
-
+    ContentView viewFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        viewFragment = new ContentView();
         for (final Section.File file : RES.sections.get(RES.selected_section).files) {
             Log.d("FILE ", file.getName());
             LayoutInflater inflater =
@@ -52,7 +53,8 @@ public class ScrollingActivity extends AppCompatActivity {
                     RES.url = file.getUrl();
 
                     getSupportFragmentManager().beginTransaction()
-                            .add(android.R.id.content, new ContentView())
+                            .add(android.R.id.content, viewFragment)
+                            .addToBackStack("view")
                             .commit();
 
                 }
@@ -61,4 +63,14 @@ public class ScrollingActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag("view");
+        if(fragment != null)
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+    }
+
+
 }
